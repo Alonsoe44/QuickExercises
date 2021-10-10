@@ -1,27 +1,27 @@
 //I start with the array of flights
 let flights = [
 
-    { id: 00, to: 'Bilbao', from: 'Barcelona', cost: 1600, scale: false },
+    { ID: 00, Departure: 'Bilbao', Destiny: 'Barcelona', Price: 1600, Scale: false },
 
-    { id: 01, to: 'New York', from: 'Barcelona', cost: 700, scale: false },
+    { ID: 01, Departure: 'New York', Destiny: 'Barcelona', Price: 700, Scale: false },
 
-    { id: 02, to: 'Los Angeles', from: 'Madrid', cost: 1100, scale: true },
+    { ID: 02, Departure: 'Los Angeles', Destiny: 'MadrID', Price: 1100, Scale: true },
 
-    { id: 03, to: 'Paris', from: 'Barcelona', cost: 210, scale: false },
+    { ID: 03, Departure: 'Paris', Destiny: 'Barcelona', Price: 210, Scale: false },
 
-    { id: 04, to: 'Roma', from: 'Barcelona', cost: 150, scale: false },
+    { ID: 04, Departure: 'Roma', Destiny: 'Barcelona', Price: 150, Scale: false },
 
-    { id: 05, to: 'London', from: 'Madrid', cost: 200, scale: false },
+    { ID: 05, Departure: 'London', Destiny: 'MadrID', Price: 200, Scale: false },
 
-    { id: 06, to: 'Madrid', from: 'Barcelona', cost: 90, scale: false },
+    { ID: 06, Departure: 'MadrID', Destiny: 'Barcelona', Price: 90, Scale: false },
 
-    { id: 07, to: 'Tokyo', from: 'Madrid', cost: 1500, scale: true },
+    { ID: 07, Departure: 'Tokyo', Destiny: 'MadrID', Price: 1500, Scale: true },
 
-    { id: 08, to: 'Shangai', from: 'Barcelona', cost: 800, scale: true },
+    { ID: 08, Departure: 'Shangai', Destiny: 'Barcelona', Price: 800, Scale: true },
 
-    { id: 09, to: 'Sydney', from: 'Barcelona', cost: 150, scale: true },
+    { ID: 09, Departure: 'Sydney', Destiny: 'Barcelona', Price: 150, Scale: true },
 
-    { id: 10, to: 'Tel-Aviv', from: 'Madrid', cost: 150, scale: false } ];
+    { ID: 10, Departure: 'Tel-Aviv', Destiny: 'MadrID', Price: 150, Scale: false } ];
 
 //Variables
 let media = 0;
@@ -30,13 +30,13 @@ let arrLastF = [];
 //Functions
 let returnMedia = () =>{
     for(let i = 0; i<flights.length;i++){
-        media = media + flights[i].cost;
+        media = media + flights[i].Price;
     }
     return media/flights.length;
     };
 let returnNumScale = () =>{
     for(let i = 0; i<flights.length;i++){
-        if(flights[i].scale){
+        if(flights[i].Scale){
             numberSca++; 
         };
     }
@@ -44,7 +44,7 @@ let returnNumScale = () =>{
 }    
 let returnLastFlights = () =>{
     for(let i = 0; i<5; i++){
-        arrLastF.push(flights[flights.length-i-1].to);
+        arrLastF.push(flights[flights.length-i-1].Departure);
     };
     return arrLastF;
 }
@@ -55,7 +55,7 @@ console.log(`We are happy to see you agan mr: ${userName} \n Fligh Schedules`);
 
 console.table(flights);
 console.log(`This is the media cost of a flight ticket ${returnMedia()}`);
-console.log(`This is the number of fligths with an scale ${returnNumScale()}`);
+console.log(`This is the number of fligths with an Scale ${returnNumScale()}`);
 console.log(`This are the destinies of the last 5 flights ${returnLastFlights()}.`);
 console.log(`\nWe hope you come back soon :) `);
 

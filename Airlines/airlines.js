@@ -38,14 +38,14 @@ let returnNumScale = () =>{
     for(let i = 0; i<flights.length;i++){
         if(flights[i].Scale){
             numberSca++; 
-        };
+        }
     }
     return numberSca;
 }    
 let returnLastFlights = () =>{
     for(let i = 0; i<5; i++){
         arrLastF.push(flights[flights.length-i-1].Departure);
-    };
+    }
     return arrLastF;
 }
 //The greetings

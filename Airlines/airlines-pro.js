@@ -56,6 +56,9 @@ let addArrFlights = () =>{
     flights.push(newFlight);
 }
 
+let deleteFlights = input =>{
+	flights = flights.splice(input,1);
+}
 //The greetings
 let userName = window.prompt('Welcome to Isdi Airlines Pro \n Introduce your name to see the fligts');
 
@@ -88,6 +91,9 @@ switch (userType){
                     console.table(flights);
                 break;
             case 'Delete flights':
+					let deleteID =window.prompt('Please introduce the id of the flight you want to delete');
+					deleteFlights(deleteID);
+					console.table(flights);
                 break;
             case 'Exit':
                 break;

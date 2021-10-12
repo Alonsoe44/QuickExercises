@@ -1,18 +1,20 @@
 let flights = [
     { ID: 0, Departure: 'Bilbao', Destiny: 'Barcelona', Price: 1600, Scale: false },
     { ID: 1, Departure: 'New York', Destiny: 'Barcelona', Price: 700, Scale: false },
-    { ID: 2, Departure: 'Los Angeles', Destiny: 'MadrID', Price: 1100, Scale: true },
+    { ID: 2, Departure: 'Los Angeles', Destiny: 'Madrid', Price: 1100, Scale: true },
     { ID: 3, Departure: 'Paris', Destiny: 'Barcelona', Price: 210, Scale: false },
     { ID: 4, Departure: 'Roma', Destiny: 'Barcelona', Price: 150, Scale: false },
-    { ID: 5, Departure: 'London', Destiny: 'MadrID', Price: 200, Scale: false },
-    { ID: 6, Departure: 'MadrID', Destiny: 'Barcelona', Price: 90, Scale: false },
+    { ID: 5, Departure: 'London', Destiny: 'Madrid', Price: 200, Scale: false },
+    { ID: 6, Departure: 'Madrid', Destiny: 'Barcelona', Price: 90, Scale: false },
     { ID: 7, Departure: 'Tokyo', Destiny: 'MadrID', Price: 1500, Scale: true },
     { ID: 8, Departure: 'Shangai', Destiny: 'Barcelona', Price: 800, Scale: true },
     { ID: 9, Departure: 'Sydney', Destiny: 'Barcelona', Price: 150, Scale: true },
-    { ID: 10, Departure: 'Tel-Aviv', Destiny: 'MadrID', Price: 150, Scale: false } ];
+    { ID: 10, Departure: 'Tel-Aviv', Destiny: 'Madrid', Price: 150, Scale: false } ];
 
-//Variables
-
+//Variables for bubbleSort
+let clean = false;
+let unsorted = true;
+//Function Variables
 let media = 0;
 let numberSca = 0;
 let arrLastF = [];
@@ -21,8 +23,8 @@ let userType = '';
 let actionAdmin = '';
 let actionUser = '';
 let filterType = '';
-//More variables
-let newFlight = {};
+//New object to store the new flight
+
 
 //Functions that return key values to print
 
@@ -48,92 +50,161 @@ let returnLastFlights = () =>{
 }
 //More functions to the Airlines Pro
 let addArrFlights = () =>{
+    let newFlight = {};
     newFlight.ID = parseFloat(window.prompt('What\'s the ID?'));
     newFlight.Departure = window.prompt('What\'s the departure?');
     newFlight.Destiny = window.prompt('What\'s the destiny?');
     newFlight.Price = parseFloat(window.prompt('What\'s the Price?'));
-    newFlight.Scale = window.prompt('Does this flight needs to scale?(Yes or no)') === 'yes'? true : false ;
+    newFlight.Scale = window.prompt('Does this flight needs to scale?(Yes or no)').toLowerCase() === 'yes'? true : false ;
     flights.push(newFlight);
+}
+//Menu functions
+function showAdmin() {
+    actionAdmin = window.prompt(`Now please type the action you are going to do:\n 
+                                    - Add flights\n 
+                                    - Delete flights\n 
+                                    - Return\n`).toLowerCase();
+    //Pick your action
+    switch (actionAdmin) {
+        case 'add flights':
+            if (flights.length == 15) {
+                console.log('Oh no we have reached the maximum number of flights allowed ');
+                showAdmin();
+            } else {
+                addArrFlights();
+                console.table(flights);
+                showAdmin();
+            }
+            break;
+        case 'delete flights':
+            let deleteID = window.prompt('Please introduce the id of the flight you want to delete');
+            deleteFlights(parseFloat(deleteID));
+            console.table(flights);
+            showAdmin();
+            break;
+        case 'return':
+            userMenu();
+            break;
+        default:
+            console.log(`Please introduce a valid action`);
+            showAdmin();
+    }
+}
+function showUser() {
+    actionUser = window.prompt(`Now please type the action you are going to do:\n 
+                                        - Filter by price\n 
+                                        - Return\n`).toLowerCase();
+    //Pick your action
+    switch (actionUser) {
+        case 'filter by price':
+            filterTime();
+            showUser();
+            break;
+        case 'return':
+            userMenu()
+            break;
+        default:
+            console.log('Please introduce a valid action');
+            showUser();
+    }
+}
+function filterTime() {
+    filterType = window.prompt(`Now please type the filter you want to apply:\n 
+                                                - High to low
+                                                - Low to high
+                                                - Return\n`).toLowerCase();
+    switch (filterType) {
+        case 'high to low':
+            bubbleSort(flights);
+            bubbleSort(flights);
+            flights.reverse();
+           console.table(flights);
+            break;
+        case 'low to high':
+            bubbleSort(flights);
+            bubbleSort(flights);
+            console.table(flights);
+            break;
+        case 'return':
+            showUser();
+            break;
+        default:
+            console.log('Please introduce a valid filter');
+            filterTime();
+    }
 }
 
 let deleteFlights = input =>{
-	flights = flights.splice(input,1);
+    for(let i = 0; i<flights.length;i++){
+        if(input==flights[i].ID){
+            flights.splice(i,1);
+        }
+    }
 }
 //The greetings
-let userName = window.prompt('Welcome to Isdi Airlines Pro \n Introduce your name to see the fligts');
+let userName = window.prompt('Welcome to ISDI Airlines Pro\n\nIntroduce your name to see the fligts');
 
 console.log(`We are happy to see you agan mr: ${userName} \n Fligh Schedules`);
 console.table(flights);
-console.log(`This is the media cost of a flight ticket ${returnMedia()}`);
+console.log(`This is the media cost of a flight ticket ${returnMedia().toFixed(2)}`);
 console.log(`This is the number of fligths with an Scale ${returnNumScale()}`);
 console.log(`This are the destinies of the last 5 flights ${returnLastFlights()}.`);
 console.log(`We hope you come back soon :) `);
 
-//Airlines pro
+userMenu();
 
-userType = window.prompt(`Please type the number of your type of user and press enter \n 
+//<<--------------------Admin User decision tree-------------------------------->>
+function userMenu() {
+    userType = window.prompt(`Who's using this menu?\n 
                                     - Normal user\n 
                                     - Admin\n 
-                                    - Exit`);
-
+                                    - Exit\n`).toLowerCase();
 //Here we use the swicth to find the user type
-switch (userType){
-    //If it's an admin
-    case 'admin':
-        actionAdmin = window.prompt(`Now please type the action you are going to do:\n 
-                                    - Add flights\n 
-                                    - Delete flights\n 
-                                    - Exit`);
-        //Pick your action
-        switch(actionAdmin){
-            case 'Add flights':
-                    addArrFlights();
-                    console.table(flights);
-                break;
-            case 'Delete flights':
-					let deleteID =window.prompt('Please introduce the id of the flight you want to delete');
-					deleteFlights(deleteID);
-					console.table(flights);
-                break;
-            case 'Exit':
-                break;
-            default:
-                console.log(`Please introduce a valid action`);
-        }
-        break;
-    //If it's a user
-    case 'Normal user':
-        actionUser = window.prompt(`Now please type the action you are going to do:\n 
-                                    - Filter by price\n 
-                                    - Exit`);
-        //Pick your action
-        switch (actionUser){
-            case 'Filter by price':
-                filterType = window.prompt(`Now please type the filter you want to apply:\n 
-                                            - High to low
-                                            - Low to high
-                                            - Exit`);
-                switch (filterType) {
-                    case 'High to low':
-                        break;
-                    case 'Low to high':
-                        break;
-                    case 'Exit':
-                        break;
-                    default:
-                        console.log('Please introduce a valid filter');
-                }
-                break;
-            case 'Exit':
-                break;
-            default:
-                console.log('Please introduce a valid action');
-        }
-        break;
-    default:
-
+    switch (userType) {
+        //If it's an admin
+        case 'admin':
+            showAdmin();
+            break;
+        //If it's a user
+        case 'normal user':
+            showUser();
+            break;
+        case 'exit':
+            window.alert('cya user');
+            break;
+        default:
+            console.log('Please introduce a valid type of user... user');
+            userMenu();
+    }
 }
+//------------------The forbidden BubbleSort Algorithm ----------------
 
-//NOTES
-//-find the 3 decimals round up
+//This is a recursive function expression to order the prices inside they flight array
+function bubbleSort(arrPrices) {
+    //This it's my base case , If I loop through the array and everything its in order the clean variable it's gonna be true
+    if(clean){
+        clean = false;
+        unsorted = true;
+        return arrPrices;
+    //Else I need to repeat the process until I reach the base case
+    } else {
+        //With this function I loop through the array
+        for (let i = 0; i < arrPrices.length - 1; i++) {
+            //Here if I find a price smaller than the one before i swap them
+            if (arrPrices[i + 1].Price < arrPrices[i].Price) {
+                [arrPrices[i+1], arrPrices[i]] = [arrPrices[i],arrPrices[i+1]];
+                //This auxiliar variable keeps track of this If statement, if the condition is met it's
+                //because the array isn't in order yet
+                unsorted = true;
+            }
+        }
+        if(unsorted){
+            //I reset the aux variable to loop through again
+            unsorted = false;
+            return bubbleSort(arrPrices);
+        } else {
+            clean = true;
+        }
+    }
+}
 

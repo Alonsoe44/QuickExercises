@@ -1,28 +1,16 @@
 //I start with the array of flights
 let flights = [
-
-    { ID: 00, Departure: 'Bilbao', Destiny: 'Barcelona', Price: 1600, Scale: false },
-
-    { ID: 01, Departure: 'New York', Destiny: 'Barcelona', Price: 700, Scale: false },
-
-    { ID: 02, Departure: 'Los Angeles', Destiny: 'MadrID', Price: 1100, Scale: true },
-
-    { ID: 03, Departure: 'Paris', Destiny: 'Barcelona', Price: 210, Scale: false },
-
-    { ID: 04, Departure: 'Roma', Destiny: 'Barcelona', Price: 150, Scale: false },
-
-    { ID: 05, Departure: 'London', Destiny: 'MadrID', Price: 200, Scale: false },
-
-    { ID: 06, Departure: 'MadrID', Destiny: 'Barcelona', Price: 90, Scale: false },
-
-    { ID: 07, Departure: 'Tokyo', Destiny: 'MadrID', Price: 1500, Scale: true },
-
-    { ID: 08, Departure: 'Shangai', Destiny: 'Barcelona', Price: 800, Scale: true },
-
-    { ID: 09, Departure: 'Sydney', Destiny: 'Barcelona', Price: 150, Scale: true },
-
-    { ID: 10, Departure: 'Tel-Aviv', Destiny: 'MadrID', Price: 150, Scale: false } ];
-
+    { ID: 00, Departure: 'Bilbao', Destiny: 'Barcelona', Price: 1600, Scale: 'yes' },
+    { ID: 01, Departure: 'New York', Destiny: 'Barcelona', Price: 700, Scale: 'no' },
+    { ID: 02, Departure: 'Los Angeles', Destiny: 'Madrid', Price: 1100, Scale: 'yes' },
+    { ID: 03, Departure: 'Paris', Destiny: 'Barcelona', Price: 210, Scale: 'no' },
+    { ID: 04, Departure: 'Roma', Destiny: 'Barcelona', Price: 150, Scale: 'no' },
+    { ID: 05, Departure: 'London', Destiny: 'Madrid', Price: 200, Scale: 'no' },
+    { ID: 06, Departure: 'Madrid', Destiny: 'Barcelona', Price: 90, Scale: 'no' },
+    { ID: 07, Departure: 'Tokyo', Destiny: 'Madrid', Price: 1500, Scale: 'yes' },
+    { ID: 08, Departure: 'Shangai', Destiny: 'Barcelona', Price: 800, Scale: 'yes' },
+    { ID: 09, Departure: 'Sydney', Destiny: 'Barcelona', Price: 150, Scale: 'yes' },
+    { ID: 10, Departure: 'Tel-Aviv', Destiny: 'Madrid', Price: 150, Scale: 'no' } ];
 //Variables
 let media = 0;
 let numberSca = 0;

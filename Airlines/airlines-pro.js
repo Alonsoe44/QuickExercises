@@ -1,16 +1,15 @@
 let flights = [
-    { ID: 0, Departure: 'Bilbao', Destiny: 'Barcelona', Price: 1600, Scale: false },
-    { ID: 1, Departure: 'New York', Destiny: 'Barcelona', Price: 700, Scale: false },
-    { ID: 2, Departure: 'Los Angeles', Destiny: 'Madrid', Price: 1100, Scale: true },
-    { ID: 3, Departure: 'Paris', Destiny: 'Barcelona', Price: 210, Scale: false },
-    { ID: 4, Departure: 'Roma', Destiny: 'Barcelona', Price: 150, Scale: false },
-    { ID: 5, Departure: 'London', Destiny: 'Madrid', Price: 200, Scale: false },
-    { ID: 6, Departure: 'Madrid', Destiny: 'Barcelona', Price: 90, Scale: false },
-    { ID: 7, Departure: 'Tokyo', Destiny: 'MadrID', Price: 1500, Scale: true },
-    { ID: 8, Departure: 'Shangai', Destiny: 'Barcelona', Price: 800, Scale: true },
-    { ID: 9, Departure: 'Sydney', Destiny: 'Barcelona', Price: 150, Scale: true },
-    { ID: 10, Departure: 'Tel-Aviv', Destiny: 'Madrid', Price: 150, Scale: false } ];
-
+    { ID: 00, Departure: 'Bilbao', Destiny: 'Barcelona', Price: 1600, Scale: 'yes' },
+    { ID: 01, Departure: 'New York', Destiny: 'Barcelona', Price: 700, Scale: 'no' },
+    { ID: 02, Departure: 'Los Angeles', Destiny: 'Madrid', Price: 1100, Scale: 'yes' },
+    { ID: 03, Departure: 'Paris', Destiny: 'Barcelona', Price: 210, Scale: 'no' },
+    { ID: 04, Departure: 'Roma', Destiny: 'Barcelona', Price: 150, Scale: 'no' },
+    { ID: 05, Departure: 'London', Destiny: 'Madrid', Price: 200, Scale: 'no' },
+    { ID: 06, Departure: 'Madrid', Destiny: 'Barcelona', Price: 90, Scale: 'no' },
+    { ID: 07, Departure: 'Tokyo', Destiny: 'Madrid', Price: 1500, Scale: 'yes' },
+    { ID: 08, Departure: 'Shangai', Destiny: 'Barcelona', Price: 800, Scale: 'yes' },
+    { ID: 09, Departure: 'Sydney', Destiny: 'Barcelona', Price: 150, Scale: 'yes' },
+    { ID: 10, Departure: 'Tel-Aviv', Destiny: 'Madrid', Price: 150, Scale: 'no' } ];
 //Variables for bubbleSort
 let clean = false;
 let unsorted = true;
@@ -36,7 +35,7 @@ let returnMedia = () =>{
     };
 let returnNumScale = () =>{
     for(let i = 0; i<flights.length;i++){
-        if(flights[i].Scale){
+        if(flights[i].Scale==='yes'){
             numberSca++; 
         }
     }
@@ -55,7 +54,7 @@ let addArrFlights = () =>{
     newFlight.Departure = window.prompt('What\'s the departure?');
     newFlight.Destiny = window.prompt('What\'s the destiny?');
     newFlight.Price = parseFloat(window.prompt('What\'s the Price?'));
-    newFlight.Scale = window.prompt('Does this flight needs to scale?(Yes or no)').toLowerCase() === 'yes'? true : false ;
+    newFlight.Scale = window.prompt('Does this flight needs to scale?(yes or no)');
     flights.push(newFlight);
 }
 //Menu functions
@@ -145,7 +144,8 @@ let deleteFlights = input =>{
 let userName = window.prompt('Welcome to ISDI Airlines Pro\n\nIntroduce your name to see the fligts');
 
 console.log(`We are happy to see you agan mr: ${userName} \n Fligh Schedules`);
-console.table(flights);
+printFlights();
+console.log('hi');
 console.log(`This is the media cost of a flight ticket ${returnMedia().toFixed(2)}`);
 console.log(`This is the number of fligths with an Scale ${returnNumScale()}`);
 console.log(`This are the destinies of the last 5 flights ${returnLastFlights()}.`);
@@ -207,4 +207,10 @@ function bubbleSort(arrPrices) {
         }
     }
 }
-//more commetns
+//Even more functions 
+
+function printFlights(){
+    for(let i = 0; i<flights.length; i++){
+        console.log(`The flight with departure: ${flights[i].Departure} and destiny: ${flights[i].Destiny} has a cost of ${flights[i].Price} euros and ${flights[i].Scale==='yes'? '' : 'doesn\'t '}realices a scale`);
+    }
+}

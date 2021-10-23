@@ -2,6 +2,7 @@
 //This is the class
 
 //Creation of the Bingo card and the Pool of numbers to play bingo
+let foundLine = false;
 let win = false;
 let cardSize = 4;
 let bingoBall;
@@ -46,8 +47,6 @@ let generateBall = () =>{
     console.log(`Number ${bingoBall} someone has the number ${bingoBall}?`)
 }
 
-
-
  let checkBallinBingoCard = () =>{      //checks the ball in the board and places and x if founded
      for(let i = 0; i< cardSize; i++){
          for(let j = 0; j< cardSize; j++){
@@ -59,15 +58,28 @@ let generateBall = () =>{
  }//end function
 
  let checkLineinBingoCard = () =>{
+    let isBingo = true;
     for(let i = 0; i< cardSize; i++){ 
-        let isRowFull = true;           //checks for an horizontal line 
+        let isRowFull = true;                   //checks for a vertical line
+        let isColumnFull = true;                //checks for an horizontal line 
         for(let j = 0; j< cardSize; j++){
             isRowFull = isRowFull && (bingoCard.numBoard[i][j] ==='x');
+            isColumnFull = isColumnFull && (bingoCard.numBoard[j][i] ==='x');
+            isBingo = isBingo && (bingoCard.numBoard[i][j] ==='x');
         }
-        if(isRowFull){
-            console.log("Line");
-        
+        if(isRowFull&&!foundLine){
+            foundLine = true;
+            console.log("Horizontal Line");
+            
         }
+        if(isColumnFull&&!foundLine){
+            foundLine = true;
+            console.log("Vertical Line");
+        }
+    }
+    if(isBingo){
+        win = true;
+        console.log('Bingooooooooo');
     }
  }//end function
 
@@ -76,13 +88,13 @@ let generateBall = () =>{
  //Main rutine for the user
  console.log('hi');
 
-     while(confirm('Another number?')){
-         generateBall();
-         checkBallinBingoCard();
-         console.table(bingoCard.numBoard);
-         checkLineinBingoCard();
+while(confirm('Another number?')){
+    generateBall();
+    checkBallinBingoCard();
+    console.table(bingoCard.numBoard);
+    checkLineinBingoCard();
          
-     }
+}
  
  
  

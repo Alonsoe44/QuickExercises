@@ -1,10 +1,8 @@
-//Bingo Script to play some bingo
-//This is the class
-
 //Creation of the Bingo card and the Pool of numbers to play bingo
+let turnCounter = 0;
 let foundLine = false;
 let win = false;
-let cardSize = 4;
+let cardSize = 0;
 let bingoBall;
 let poolNumbers = [];
 let resetPoolNumber = ()=>{
@@ -20,7 +18,7 @@ let bingoCard = {
 	numBoard: createBoard(),
 }
 function createBoard(){
-    let tempBoard = [];                                 
+    let tempBoard = [];
     for(let j = 0; j<cardSize; j++){
         tempBoard[j]= [];
         for(let i=0;i<cardSize; i++){
@@ -31,13 +29,10 @@ function createBoard(){
     }//end for2
     return tempBoard;
 }//end function
-
-function randomIndexPoolNumbers(){                                    //This number its the index of the poolNumber
+function randomIndexPoolNumbers(){                                    //This number its the index of the poolNumbers
 	return parseInt(Math.random()*poolNumbers.length);
 }
-
 resetPoolNumber();
-
 //Now its time to declare the functions that fill that bingo Card :)
 
 let generateBall = () =>{
@@ -59,9 +54,9 @@ let generateBall = () =>{
 
  let checkLineinBingoCard = () =>{
     let isBingo = true;
-    for(let i = 0; i< cardSize; i++){ 
+    for(let i = 0; i< cardSize; i++){
         let isRowFull = true;                   //checks for a vertical line
-        let isColumnFull = true;                //checks for an horizontal line 
+        let isColumnFull = true;                //checks for an horizontal line
         for(let j = 0; j< cardSize; j++){
             isRowFull = isRowFull && (bingoCard.numBoard[i][j] ==='x');
             isColumnFull = isColumnFull && (bingoCard.numBoard[j][i] ==='x');
@@ -70,7 +65,6 @@ let generateBall = () =>{
         if(isRowFull&&!foundLine){
             foundLine = true;
             console.log("Horizontal Line");
-            
         }
         if(isColumnFull&&!foundLine){
             foundLine = true;
@@ -83,18 +77,16 @@ let generateBall = () =>{
     }
  }//end function
 
-
- window.prompt('hi');
- //Main rutine for the user
- console.log('hi');
-
+//Main routine for the user
+window.prompt('hi');
 while(confirm('Another number?')){
+    turnCounter ++;
+    console.log(`This is the turn ${turnCounter}`);
     generateBall();
     checkBallinBingoCard();
     console.table(bingoCard.numBoard);
     checkLineinBingoCard();
-         
 }
- 
- 
+
+//CHANGE THE VARIABLE NUMBOARD TO JUST BOARD IN VSCODE
  

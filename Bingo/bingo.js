@@ -1,45 +1,88 @@
 //Bingo Script to play some bingo
 //This is the class
-class BingoBoard{
-	constructor(){
-		this.arr = this.createArr();
-		console.log(this.arr);
-		console.log('ayudaaa');
-		
-	}
-	
-	createArr(){
-		let tempArr = [];
-		for(let i = 0; i<4; i++){
-			boardArr[i]= [];
-			for(let j=0;j<4; j++){
-				let tempItem = rdItem();
-				boardArr[i][j]= mainBinArr[tempItem];
-				mainBinArr.splice(tempItem, 1);
-			}//end for1
-		}//end for2
-		return tempArr;
-	}//end function
-}//end constructor
 
+//Creation of the Bingo card and the Pool of numbers to play bingo
+let win = false;
+let cardSize = 4;
+let bingoBall;
+let poolNumbers = [];
+let resetPoolNumber = ()=>{
+    let tempPool = [];
+    for(let i=0; i<90; i++){
+        tempPool[i]=i+1;
+    }
+    poolNumbers = tempPool;
+}
+resetPoolNumber();
 
-//Some variables
+let bingoCard = {
+	numBoard: createBoard(),
+}
+function createBoard(){
+    let tempBoard = [];                                 
+    for(let j = 0; j<cardSize; j++){
+        tempBoard[j]= [];
+        for(let i=0;i<cardSize; i++){
+            let indexHolder = randomIndexPoolNumbers();
+            tempBoard[j][i]= poolNumbers[indexHolder];
+            poolNumbers.splice(indexHolder, 1);
+        }//end for1
+    }//end for2
+    return tempBoard;
+}//end function
 
-let mainBinArr = [];
-let boardArr = [];
+function randomIndexPoolNumbers(){                                    //This number its the index of the poolNumber
+	return parseInt(Math.random()*poolNumbers.length);
+}
 
-//Creation of the arrays
-for(let i=0; i<90; i++){
-	mainBinArr[i]=i+1;
+resetPoolNumber();
+
+//Now its time to declare the functions that fill that bingo Card :)
+
+let generateBall = () =>{
+    let indexHolder = randomIndexPoolNumbers();
+    bingoBall = poolNumbers[indexHolder];
+    poolNumbers.splice(indexHolder, 1);
+    console.log(`Number ${bingoBall} someone has the number ${bingoBall}?`)
 }
 
 
-let theBoard = new BingoBoard();
-console.log(theBoard.arr);
 
-//Some functions
-function rdItem(){
-	return Math.random()*mainBinArr.length;
-}
+ let checkBallinBingoCard = () =>{      //checks the ball in the board and places and x if founded
+     for(let i = 0; i< cardSize; i++){
+         for(let j = 0; j< cardSize; j++){
+             if(bingoCard.numBoard[i][j] ===bingoBall){
+                bingoCard.numBoard[i][j] = 'x';
+             }
+         }
+     }
+ }//end function
+
+ let checkLineinBingoCard = () =>{
+    for(let i = 0; i< cardSize; i++){ 
+        let isRowFull = true;           //checks for an horizontal line 
+        for(let j = 0; j< cardSize; j++){
+            isRowFull = isRowFull && (bingoCard.numBoard[i][j] ==='x');
+        }
+        if(isRowFull){
+            console.log("Line");
+        
+        }
+    }
+ }//end function
 
 
+ window.prompt('hi');
+ //Main rutine for the user
+ console.log('hi');
+
+     while(confirm('Another number?')){
+         generateBall();
+         checkBallinBingoCard();
+         console.table(bingoCard.numBoard);
+         checkLineinBingoCard();
+         
+     }
+ 
+ 
+ 

@@ -13,6 +13,7 @@ function calculator(num1, num2) {
     results.push(`Mult: ${mult}`);	
     results.push(`Div: ${div}`);
 	return results;
+    hdfskjhsdakfjds
 }
 
 console.log(calculator(3,5));

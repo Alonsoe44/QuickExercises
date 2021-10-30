@@ -51,23 +51,32 @@ let Questions = [{ letter: "a", answer: "abducir", status: 0, question: "CON LA 
     { letter: "y", answer: "peyote", status: 0, question: "CONTIENE LA Y. Pequeño cáctus conocido por sus alcaloides psicoactivos utilizado de forma ritual y medicinal por indígenas americanos"},
 
     { letter: "z", answer: "zen", status: 0, question: "CON LA Z. Escuela de budismo que busca la experiencia de la sabiduría más allá del discurso racional"}, ];
+	
+	//Some key variables
+	let userAnswer = '';
+	
+	//Functions
 
     function startGame  ()  {
         createQuestions();
         IniciateRound();
     }
-    function createQuestion () {
+    function createQuestions () {
 
-    } 
+    }
 
     function IniciateRound () {
-        printTheQuestions();
-        evaluateAnswer();
-    }
-
-    let printTheQuestions = () =>{
         for(let i = 0; i<Questions.length;i++){
             askQuestionX(i);
+			reviewAnswer();
         }
     }
+
+    function askQuestionX (x){
+        userAnswer  = windows.promp(questions[x]);
+    }
+	
+	function reviewAnswer(){
+		user
+	}
 

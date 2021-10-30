@@ -117,10 +117,12 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
             }
         ];
         playersScore.push({name: userName, score: correctAnswers*361})
-        console.table(playersScore);
-        console.log('Gracias por jugar');
+        if(!end){
+            console.table(playersScore);
+        }
         console.log(`Acertaste ${correctAnswers} preguntas`);
         console.log(`Fallaste ${QuestionBank.length - correctAnswers} preguntas`);
+        console.log('Gracias por jugar');
     }
     //Execution
     let userName = window.prompt('What\'s your name?');

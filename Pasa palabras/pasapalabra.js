@@ -128,7 +128,9 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     let userName = window.prompt('What\'s your name?');
     prepareRandomQuestions();
     startGame();
-    GoodByePrintStats();
+    GoodByePrintStats(); 
+		//Ahora asi es como se edita un script desde un iphone y se hace el respectivo
+		//Pull 
 
 
     

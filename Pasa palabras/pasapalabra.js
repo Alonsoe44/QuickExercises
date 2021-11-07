@@ -125,12 +125,19 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
         console.log('Gracias por jugar');
     }
     //Execution
-    let userName = window.prompt('What\'s your name?');
+    /* let userName = window.prompt('What\'s your name?');
     prepareRandomQuestions();
     startGame();
-    GoodByePrintStats(); 
+    GoodByePrintStats();  */
 		//Ahora asi es como se edita un script desde un iphone y se hace el respectivo
 		//Pull 
 
-
+anime({
+    targets: 'div.box.red',
+    translateY: [
+        { value: 200, duration: 500 },
+        { value: 0, duration: 800 }
+    ],
+    rotate: '7turn'
+});
     

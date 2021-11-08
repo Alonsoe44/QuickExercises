@@ -132,12 +132,15 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
 		//Ahora asi es como se edita un script desde un iphone y se hace el respectivo
 		//Pull 
 
-anime({
-    targets: 'div.box.red',
-    translateY: [
-        { value: 200, duration: 500 },
-        { value: 0, duration: 800 }
+/* anime({
+    targets: '#mainWheel',
+    translateX: [
+        { value: -900, duration: 3000 }
     ],
-    rotate: '7turn'
-});
+    translateY: [
+        { value: -900, duration: 3000 }
+    ],
+    rotate: '2turn'
+}); */
+    
     

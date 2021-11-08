@@ -1,24 +1,15 @@
 *{
-    background-color: purple;
+    background-color: #41539B;
+    padding: 0;
+    margin: 0;
 }
 
-.box{
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 4px;
-    display:inline-block;
+#theMask{
+    height: 900px;
+    width: 900px;
 }
-
-.red{
-    background-color: red;   
-}
-.green{
-    background-color: green;   
-}
-.blue{
-    background-color: blue;   
-}
-.yellow{
-    background-color: yellow;   
+#mainWheel{
+    height: 1800px;
+    width: 1800px;
+    overflow: hidden;
 }

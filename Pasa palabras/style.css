@@ -1,15 +1,39 @@
 *{
-    background-color: #41539B;
     padding: 0;
     margin: 0;
+    font-family: Coda;
+}
+body{
+    background-color: #41539B;
 }
 
-#theMask{
-    height: 900px;
-    width: 900px;
+#WheelText{
+    height: 1800px;
+    width: 1800px;
+}
+#TextCorner{
+    border-radius: 0% 0% 50% 0%;
+    background-color: red;
+    padding-left: 51%;
+    padding-top: 51%;
+    width: 35%;
+    height: 35%;
+    
+}
+#para{
+    z-index: 5;
+    height: 600px;
+    width: 600px;
+    color: yellow;
+    font-size: 3rem;
+    border-radius: 50%;
+    shape-outside: circle(50%);
 }
 #mainWheel{
     height: 1800px;
     width: 1800px;
-    overflow: hidden;
+    object-position: 0px 0px;
+    position: absolute;
+    z-index: -5;
 }
+

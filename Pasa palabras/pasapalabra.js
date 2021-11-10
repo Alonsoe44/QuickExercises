@@ -140,7 +140,7 @@ anime({
     translateY: [
         { value: -900, duration: 3000 }
     ],
-    //rotate: '1turn'
+    rotate: '180'
 });
     
     

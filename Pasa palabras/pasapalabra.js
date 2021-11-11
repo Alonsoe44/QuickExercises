@@ -131,16 +131,15 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     GoodByePrintStats();  */
 		//Ahora asi es como se edita un script desde un iphone y se hace el respectivo
 		//Pull 
+        //More code more work to do
 
-anime({
+/* anime({
     targets: '#WheelText',
-    translateX: [
-        { value: -900, duration: 3000 }
-    ],
+    
     translateY: [
-        { value: -900, duration: 3000 }
+        { value: -700, duration: 3000 }
     ],
-    rotate: '180'
-});
+    rotate: '1turn'
+}); */
     
     

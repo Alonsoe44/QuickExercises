@@ -54,10 +54,13 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     { answer: "yunque", question: "CONTIENE LA Y. Usado en forjas y el favorito de Tom y Jerry"},
     {answer: "zorro",question: "CON LA Z. Prueba de ingles.. pencil es a lapiz como fox es a ...."}, ];
     //Global Variables
+    const userInputBox = document.getElementById('InputBox');
+    const wheelText = document.getElementById('paragraph');
     let end = false;
     let correctAnswers = 0;
+    let indexQuestion = 0;
     //Functions
-    function prepareRandomQuestions() {
+    function prepareRandomQuestions(){
         for(let i = 0;i<Questions.length;i++){
             if(parseInt(Math.random()*2)===1){
                 Questions[i].question= QuestionBank[i].question;
@@ -72,16 +75,20 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
             startGame();
         }
     }
-    function IniciateRound () {
-        for(let i = 0; i<Questions.length;i++){
-            if(end){
-                break;
+    function askQuestionProtocol () {
+        indexQuestion++; 
+        
+            if(!end){
+                askQuestionX(indexQuestion);
             }
-            askQuestionX(i);
-        }
+        
     }
     function askQuestionX(i){
-        let userAnswer = window.prompt(Questions[i].question).toLowerCase();
+        //let userAnswer = window.prompt(Questions[indexQuestion].question).toLowerCase(); old code
+        spinTheWheel.play();
+        wheelText.innerHTML = Questions[i].question;
+        let userAnswer = userInputBox.value;
+        userInputBox.value = '';
         if(userAnswer===Questions[i].answer){
             Questions[i].status = 'correct';
             correctAnswers++;
@@ -95,6 +102,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
             console.log(`La respuesta correcta era: ${Questions[i].answer}`);
         }
     }
+    
     function cleanWrongAnswers(){
         for(let i = 0 ;i<Questions.length;i++){
             if(Questions[i].status === 'correct' || Questions[i].status === 'incorrect'){
@@ -125,13 +133,32 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
         console.log('Gracias por jugar');
     }
     //Execution
-    /* let userName = window.prompt('What\'s your name?');
+    
     prepareRandomQuestions();
-    startGame();
-    GoodByePrintStats();  */
-		//Ahora asi es como se edita un script desde un iphone y se hace el respectivo
-		//Pull 
-        //More code more work to do
+    document.addEventListener('keydown', function(event){
+        switch(event.key){
+            case 'Enter':
+                askQuestionProtocol();
+                break;
+        }
+    });
+    //GoodByePrintStats();  
+//animations
+ let spinTheWheel = anime({
+    targets: '#WheelText',
+    translateX: [
+        { value: -120}
+    ],
+    translateY: [
+        { value: -350}
+    ],
+    rotate: [
+        { value: '1turn', duration: 3000, delay: 500 }
+    ],
+    scale: [
+        { value: 6}
+    ],
+});
 
 anime({
     targets: '#WheelText',
@@ -148,5 +175,7 @@ anime({
         { value: 6, duration: 3000, delay: 500 }
     ],
 });
+
+
     
     

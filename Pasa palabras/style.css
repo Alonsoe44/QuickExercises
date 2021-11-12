@@ -12,26 +12,38 @@ body{
     background-color: #41539B;
     font-size: 1.6rem;
 }
-
-#WheelText{
-    height: 70rem;
-    width: 70rem;
+#upperHalf{
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
-#para{
+#WheelText{
+    height: 10rem;
+    width: 10rem;
+}
+#paragraph{
+    font-size: 0.30rem;
     z-index: 5;
-    padding-left: 18%;
+    padding-left: 41%;
     padding-top: 51%;
-    width: 35%;
-    height: 35%;
+    width: 80%;
     color: yellow;
-    border-radius: 50%;
-    shape-outside: circle(50%);
 }
 #mainWheel{
-    height: 70rem;
-    width: 70rem;
-    object-position: 0px 0px;
+    height: 10rem;
+    width: 10rem;
     position: absolute;
     z-index: -5;
 }
+
+#bottomHalf{
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
 

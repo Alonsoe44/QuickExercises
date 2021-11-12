@@ -133,13 +133,20 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
 		//Pull 
         //More code more work to do
 
-/* anime({
+anime({
     targets: '#WheelText',
-    
-    translateY: [
-        { value: -700, duration: 3000 }
+    translateX: [
+        { value: -120, duration: 3000, delay: 500}
     ],
-    rotate: '1turn'
-}); */
+    translateY: [
+        { value: -350, duration: 3000, delay: 500 }
+    ],
+    rotate: [
+        { value: '1turn', duration: 3000, delay: 500 }
+    ],
+    scale: [
+        { value: 6, duration: 3000, delay: 500 }
+    ],
+});
     
     

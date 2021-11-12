@@ -150,7 +150,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
         { value: -120}
     ],
     translateY: [
-        { value: -350}
+        { value: -270}
     ],
     rotate: [
         { value: '1turn', duration: 3000, delay: 500 }
@@ -166,7 +166,7 @@ anime({
         { value: -120, duration: 3000, delay: 500}
     ],
     translateY: [
-        { value: -350, duration: 3000, delay: 500 }
+        { value: -270, duration: 3000, delay: 500 }
     ],
     rotate: [
         { value: '1turn', duration: 3000, delay: 500 }

@@ -89,7 +89,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     function reviewLastAnswer(i){
         //let userAnswer = window.prompt(Questions[indexQuestion].question).toLowerCase(); old code
         spinTheWheel.play();
-        let userAnswer = userInputBox.value;
+        let userAnswer = userInputBox.value.toLowerCase();
         console.log(userAnswer);
         userInputBox.value = '';
         if(userAnswer===Questions[i].answer){

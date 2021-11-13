@@ -162,6 +162,7 @@ let spinTheWheel;
 //MediaQuery function
 function findScreenSize(){
     if(mobileSize.matches){
+        console.log('mobileScreen');
         spinTheWheel = anime({
             targets: '#WheelText',
             translateX: [
@@ -178,6 +179,7 @@ function findScreenSize(){
             ],
         });
     } else {
+        console.log('desktop screen');
         spinTheWheel = anime({
             targets: '#WheelText',
             translateX: [

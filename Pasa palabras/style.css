@@ -40,24 +40,24 @@ body{
 }
 #scoreBox{
     position: absolute;
-    width: 15rem;
+    width: 12rem;
     height: 5rem;
     margin-left: 50%;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     z-index: -10;
 }
 #dollarBase{
-    width: 15rem;
+    width: 12rem;
     height: auto;
     position: absolute;
     z-index: -5;
 }
 #scoreNum{
-    padding-left: 17%;
-    padding-top: 10%;
+    padding-left: 15%;
+    padding-top: 9%;
     z-index: 5;
     position: absolute;
-    font-size: 3rem;
+    font-size: 2.4rem;
 
 }
 
@@ -72,7 +72,7 @@ body{
 }
 #InputBox{
     background-color: #B31336;
-    border: 1rem solid yellow;
+    border: 1rem solid #E0C486;
     color: yellow;
     padding-left: 0.5rem;
     font-style: bold;

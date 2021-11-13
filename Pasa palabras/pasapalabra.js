@@ -54,6 +54,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     { answer: "yunque", question: "CONTIENE LA Y. Usado en forjas y el favorito de Tom y Jerry"},
     {answer: "zorro",question: "CON LA Z. Prueba de ingles.. pencil es a lapiz como fox es a ...."}, ];
     //Global Variables
+    const mobileSize = window.matchMedia("(max-width: 480px");
     const userInputBox = document.getElementById('InputBox');
     const wheelText = document.getElementById('paragraph');
     const scoreDollar = document.getElementById('scoreNum');
@@ -142,32 +143,13 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
         }
     }
     function GoodByePrintStats(){
-        wheelText.innerHTML = 'It\'s game Overr <br><br> Acertaste '+correctAnswers+' preguntas <br><br> Fallaste '+(QuestionBank.length - correctAnswers)+' preguntas <br><br> Gracias por jugar';
+        wheelText.innerHTML = 'It\'s game Overr <br><br> Acertaste '+correctAnswers+' preguntas <br> Fallaste '+(QuestionBank.length - correctAnswers)+' preguntas <br> Gracias por jugar';
         console.log(`Acertaste ${correctAnswers} preguntas`);
         console.log(`Fallaste ${QuestionBank.length - correctAnswers} preguntas`);
         console.log('Gracias por jugar');
     }
-    //Execution
     
-    prepareRandomQuestions();
-    //First question
-    wheelText.innerHTML = Questions[0].question;
-    document.addEventListener('keydown', function(event){
-        switch(event.key){
-            case 'Enter':
-                if(!prepareTime){
-                    refreshProtocol();
-                } else if(end){
-                    console.log('it\'s over');
-                }else {
-                    prepareTime = false;
-                    userInputBox.value = '';
-                    console.table(Questions);
-                    printQuestion(0);
-                }
-                break;
-        }
-    });
+
 //animations
 let delayWheel = 100;
 let durationAnimation = 2000;
@@ -186,9 +168,52 @@ let durationAnimation = 2000;
         { value: 6, duration: durationAnimation, delay: delayWheel }
     ],
 });
+//MediaQuery function
+function findScreenSize(){
+    if(mobileSize.matches){
+        console.log('were are in mobile');
+    } else {
+        spinTheWheel = anime({
+            targets: '#WheelText',
+            translateX: [
+                { value: -120, duration: durationAnimation, delay: delayWheel}
+            ],
+            translateY: [
+                { value: -270, duration: durationAnimation, delay: delayWheel }
+            ],
+            rotate: [
+                { value: '1turn', duration: durationAnimation, delay: delayWheel }
+            ],
+            scale: [
+                { value: 9, duration: durationAnimation, delay: delayWheel }
+            ],
+        });
+    }
+}
 
 
 
+//Execution
+findScreenSize();
+prepareRandomQuestions();
+//First question
+wheelText.innerHTML = Questions[0].question;
+document.addEventListener('keydown', function(event){
+    switch(event.key){
+        case 'Enter':
+            if(!prepareTime){
+                refreshProtocol();
+            } else if(end){
+                console.log('it\'s over');
+            }else {
+                prepareTime = false;
+                userInputBox.value = '';
+                console.table(Questions);
+                printQuestion(0);
+            }
+            break;
+    }
+});
 
     
     

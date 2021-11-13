@@ -34,7 +34,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     {answer: "f", question: "CON LA F. Press ... to pay respect"},
     {answer: "gravedad", question: "CON LA G. Una constante no tan constante en la tierra 9.81m/s"},
     {answer: "hentai", question: "CON LA H. Subgenero del anime con gran precencia en la comunidad otaku que involucra tentaculos"},
-    {answer: "intriseco", question: "CON LA I. Que es propio y  parte del mismo"},
+    {answer: "intrinseco", question: "CON LA I. Que es propio y  parte del mismo"},
     {answer: "jaguar", question: "CON LA J.Como estas en ingles, animal How are "},
     {answer: "karate", question: "CON LA K. Arte milenario de japon que consiste en partir tablas HA IA "},
     {answer: "Lima", question: "CON LA L. Capital de Peru"},
@@ -56,9 +56,13 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     //Global Variables
     const userInputBox = document.getElementById('InputBox');
     const wheelText = document.getElementById('paragraph');
+    const scoreDollar = document.getElementById('scoreNum');
     let end = false;
     let correctAnswers = 0;
-    let indexQuestion = 0;
+    let indexQuestion = 1;
+    let indexAnswer = 0;
+    let prepareTime = false;
+    let lastQuestionIndex = Questions.length;
     //Functions
     function prepareRandomQuestions(){
         for(let i = 0;i<Questions.length;i++){
@@ -68,31 +72,30 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
             }
         }
     } 
-    function startGame  ()  {
-        IniciateRound();
-        cleanWrongAnswers();
-        if(!end && Questions.length!==0){
-            startGame();
+    function refreshProtocol() {
+        lastQuestionIndex = Questions.length;
+        if(indexQuestion===lastQuestionIndex){
+            wheelText.innerHTML = 'Round 2 press enter to continue';
+        } else {
+            printQuestion(indexQuestion);
         }
+        reviewLastAnswer(indexAnswer);
+        indexQuestion++;
+        indexAnswer++;
     }
-    function askQuestionProtocol () {
-        indexQuestion++; 
-        
-            if(!end){
-                askQuestionX(indexQuestion);
-            }
-        
+    function printQuestion(i){
+        wheelText.innerHTML = Questions[i].question;
     }
-    function askQuestionX(i){
+    function reviewLastAnswer(i){
         //let userAnswer = window.prompt(Questions[indexQuestion].question).toLowerCase(); old code
         spinTheWheel.play();
-        wheelText.innerHTML = Questions[i].question;
         let userAnswer = userInputBox.value;
         userInputBox.value = '';
         if(userAnswer===Questions[i].answer){
             Questions[i].status = 'correct';
             correctAnswers++;
             console.log('Correct');
+            scoreDollar.innerHTML = `$${correctAnswers*100+correctAnswers*4327}`;
         }else  if(userAnswer==='pasapalabra'){
             console.log('next');
         } else if(userAnswer==='end'){
@@ -101,8 +104,22 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
             Questions[i].status = 'incorrect';
             console.log(`La respuesta correcta era: ${Questions[i].answer}`);
         }
+        
+        if(i===lastQuestionIndex-1){
+            prepareRound();
+        }
     }
-    
+    function prepareRound(){
+        indexAnswer =-1;
+        indexQuestion = 0;
+        prepareTime = true;
+        cleanWrongAnswers();
+        
+        if(Questions.length===0){
+            wheelText.innerHTML = 'It\'s game Overr';
+            end = true;
+        }
+    }    
     function cleanWrongAnswers(){
         for(let i = 0 ;i<Questions.length;i++){
             if(Questions[i].status === 'correct' || Questions[i].status === 'incorrect'){
@@ -135,46 +152,44 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     //Execution
     
     prepareRandomQuestions();
+    //First question
+    wheelText.innerHTML = Questions[0].question;
     document.addEventListener('keydown', function(event){
         switch(event.key){
             case 'Enter':
-                askQuestionProtocol();
+                if(!prepareTime){
+                    refreshProtocol();
+                } else if(end){
+                    console.log('it\'s over');
+                }else {
+                    prepareTime = false;
+                    userInputBox.value = '';
+                    console.table(Questions);
+                    printQuestion(0);
+                }
                 break;
         }
     });
-    //GoodByePrintStats();  
 //animations
+let delayWheel = 100;
+let durationAnimation = 2000;
  let spinTheWheel = anime({
     targets: '#WheelText',
     translateX: [
-        { value: -120}
+        { value: -120, duration: durationAnimation, delay: delayWheel}
     ],
     translateY: [
-        { value: -270}
+        { value: -270, duration: durationAnimation, delay: delayWheel }
     ],
     rotate: [
-        { value: '1turn', duration: 3000, delay: 500 }
+        { value: '1turn', duration: durationAnimation, delay: delayWheel }
     ],
     scale: [
-        { value: 6}
+        { value: 6, duration: durationAnimation, delay: delayWheel }
     ],
 });
 
-anime({
-    targets: '#WheelText',
-    translateX: [
-        { value: -120, duration: 3000, delay: 500}
-    ],
-    translateY: [
-        { value: -270, duration: 3000, delay: 500 }
-    ],
-    rotate: [
-        { value: '1turn', duration: 3000, delay: 500 }
-    ],
-    scale: [
-        { value: 6, duration: 3000, delay: 500 }
-    ],
-});
+
 
 
     

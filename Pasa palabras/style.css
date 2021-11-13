@@ -11,6 +11,7 @@ html{
 body{
     background-color: #41539B;
     font-size: 1.6rem;
+    color: yellow;
 }
 #upperHalf{
     height: 40vh;
@@ -29,13 +30,35 @@ body{
     padding-left: 41%;
     padding-top: 51%;
     width: 80%;
-    color: yellow;
+    
 }
 #mainWheel{
     height: 10rem;
     width: 10rem;
     position: absolute;
     z-index: -5;
+}
+#scoreBox{
+    position: absolute;
+    width: 15rem;
+    height: 5rem;
+    margin-left: 50%;
+    margin-bottom: 3rem;
+    z-index: -10;
+}
+#dollarBase{
+    width: 15rem;
+    height: auto;
+    position: absolute;
+    z-index: -5;
+}
+#scoreNum{
+    padding-left: 17%;
+    padding-top: 10%;
+    z-index: 5;
+    position: absolute;
+    font-size: 3rem;
+
 }
 
 #bottomHalf{

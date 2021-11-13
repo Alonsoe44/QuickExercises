@@ -37,7 +37,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     {answer: "intrinseco", question: "CON LA I. Que es propio y  parte del mismo"},
     {answer: "jaguar", question: "CON LA J.Como estas en ingles, animal How are "},
     {answer: "karate", question: "CON LA K. Arte milenario de japon que consiste en partir tablas HA IA "},
-    {answer: "Lima", question: "CON LA L. Capital de Peru"},
+    {answer: "lima", question: "CON LA L. Capital de Peru"},
     {answer: "Martes", question: "CON LA M. El dia de ayer si hoy es miercoles QUE DIFICIL"},
     {answer: "net", question: "CON LA N. En tennis si tu golpe se queda en medio del campo se quedo en la ...."},
     {answer: "n", question: "CONTIENE LA Ñ. Tecla que no se encuentra en los teclados"},
@@ -96,6 +96,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
         if(userAnswer===Questions[i].answer){
             Questions[i].status = 'correct';
             correctAnswers++;
+            correctAnswerSFX.play();
             console.log('Correct');
             animateNumbers(correctAnswers*1000);
         }else  if(userAnswer==='pasapalabra'){
@@ -143,6 +144,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
         }
     }
     function GoodByePrintStats(){
+        endGameSFX.play();
         wheelText.innerHTML = 'It\'s game Overr <br><br> Acertaste '+correctAnswers+' preguntas <br> Fallaste '+(QuestionBank.length - correctAnswers)+' preguntas <br> Gracias por jugar';
         console.log(`Acertaste ${correctAnswers} preguntas`);
         console.log(`Fallaste ${QuestionBank.length - correctAnswers} preguntas`);
@@ -151,28 +153,15 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     
 
 //animations
+const correctAnswerSFX = document.getElementById('dingAudio');
+const endGameSFX = document.getElementById('endGameSound');
 let delayWheel = 100;
 let durationAnimation = 2000;
- let spinTheWheel = anime({
-    targets: '#WheelText',
-    translateX: [
-        { value: -120, duration: durationAnimation, delay: delayWheel}
-    ],
-    translateY: [
-        { value: -270, duration: durationAnimation, delay: delayWheel }
-    ],
-    rotate: [
-        { value: '1turn', duration: durationAnimation, delay: delayWheel }
-    ],
-    scale: [
-        { value: 6, duration: durationAnimation, delay: delayWheel }
-    ],
-});
+let spinTheWheel;
+ findScreenSize();
 //MediaQuery function
 function findScreenSize(){
     if(mobileSize.matches){
-        console.log('were are in mobile');
-    } else {
         spinTheWheel = anime({
             targets: '#WheelText',
             translateX: [
@@ -185,7 +174,23 @@ function findScreenSize(){
                 { value: '1turn', duration: durationAnimation, delay: delayWheel }
             ],
             scale: [
-                { value: 9, duration: durationAnimation, delay: delayWheel }
+                { value: 6, duration: durationAnimation, delay: delayWheel }
+            ],
+        });
+    } else {
+        spinTheWheel = anime({
+            targets: '#WheelText',
+            translateX: [
+                { value: 30, duration: durationAnimation, delay: delayWheel}
+            ],
+            translateY: [
+                { value: -420, duration: durationAnimation, delay: delayWheel }
+            ],
+            rotate: [
+                { value: '1turn', duration: durationAnimation, delay: delayWheel }
+            ],
+            scale: [
+                { value: 11, duration: durationAnimation, delay: delayWheel }
             ],
         });
     }
@@ -194,7 +199,7 @@ function findScreenSize(){
 
 
 //Execution
-findScreenSize();
+
 prepareRandomQuestions();
 //First question
 wheelText.innerHTML = Questions[0].question;

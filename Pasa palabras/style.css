@@ -116,6 +116,7 @@ body{
         height: 5rem;
         right: 3.3rem;
         z-index: -10;
+        bottom: auto;
     }
     #dollarBase{
         width: 12rem;
@@ -140,13 +141,14 @@ body{
         font-size: 2.4rem;
     }
     #bottomHalf{
-        width: 50vw;
-        display: flex;
-        justify-content: center;
+        width: 100%;
+        padding-top: 2rem;
     }
     #ContainerInput{
         margin-top: 2rem;
         width: 30rem;
+        height: auto;
+        margin: 0;
     }
     #InputBox{
         background-color: #B31336;

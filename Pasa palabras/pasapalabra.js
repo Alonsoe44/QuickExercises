@@ -161,24 +161,7 @@ let spinTheWheel;
  findScreenSize();
 //MediaQuery function
 function findScreenSize(){
-    if(mobileSize.matches){
-        console.log('mobileScreen');
-        spinTheWheel = anime({
-            targets: '#WheelText',
-            translateX: [
-                { value: -120, duration: durationAnimation, delay: delayWheel}
-            ],
-            translateY: [
-                { value: -270, duration: durationAnimation, delay: delayWheel }
-            ],
-            rotate: [
-                { value: '1turn', duration: durationAnimation, delay: delayWheel }
-            ],
-            scale: [
-                { value: 6, duration: durationAnimation, delay: delayWheel }
-            ],
-        });
-    } else {
+    if(!mobileSize.matches){
         console.log('desktop screen');
         spinTheWheel = anime({
             targets: '#WheelText',
@@ -193,6 +176,23 @@ function findScreenSize(){
             ],
             scale: [
                 { value: 11, duration: durationAnimation, delay: delayWheel }
+            ],
+        });
+    } else {
+        console.log('mobileScreen');
+        spinTheWheel = anime({
+            targets: '#WheelText',
+            translateX: [
+                { value: -120, duration: durationAnimation, delay: delayWheel}
+            ],
+            translateY: [
+                { value: -270, duration: durationAnimation, delay: delayWheel }
+            ],
+            rotate: [
+                { value: '1turn', duration: durationAnimation, delay: delayWheel }
+            ],
+            scale: [
+                { value: 6, duration: durationAnimation, delay: delayWheel }
             ],
         });
     }

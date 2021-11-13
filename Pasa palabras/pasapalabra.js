@@ -161,8 +161,9 @@ let spinTheWheel;
 findScreenSize();
 //MediaQuery function
 console.log('This is the screen width '+screen.width);
+let screenActualWidth =screen.width;
 function findScreenSize(){
-    if(!mobileSize.matches){
+    if(screen.width>480){
         console.log('desktop screen');
         spinTheWheel = anime({
             targets: '#WheelText',

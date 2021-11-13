@@ -75,7 +75,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
     function refreshProtocol() {
         lastQuestionIndex = Questions.length;
         if(indexQuestion===lastQuestionIndex){
-            wheelText.innerHTML = 'Round 2 press enter to continue';
+            wheelText.innerHTML = 'NewRound <br> Press enter to continue';
         } else {
             printQuestion(indexQuestion);
         }
@@ -95,7 +95,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
             Questions[i].status = 'correct';
             correctAnswers++;
             console.log('Correct');
-            scoreDollar.innerHTML = `$${correctAnswers*100+correctAnswers*4327}`;
+            animateNumbers(correctAnswers*1000);
         }else  if(userAnswer==='pasapalabra'){
             console.log('next');
         } else if(userAnswer==='end'){
@@ -116,7 +116,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
         cleanWrongAnswers();
         
         if(Questions.length===0){
-            wheelText.innerHTML = 'It\'s game Overr';
+            GoodByePrintStats();
             end = true;
         }
     }    
@@ -128,23 +128,20 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
             }
         } 
     }
-    function GoodByePrintStats(){
-        let playersScore = [
-            {
-                name: 'Calamardo',
-                score: 473829
-            },{
-                name: 'Bob Esponja',
-                score: 43452
-            },{
-                name: 'Don Cangrejo',
-                score: 32452
+    function animateNumbers(newScore){
+        let theCaller = setInterval(incrementNum, 10);
+        let count = parseInt(scoreDollar.innerHTML);
+        
+        function incrementNum(){
+            count += 20;
+            scoreDollar.innerHTML = count;
+            if(count===newScore){
+                clearInterval(theCaller);
             }
-        ];
-        playersScore.push({name: userName, score: correctAnswers*361})
-        if(!end){
-            console.table(playersScore);
         }
+    }
+    function GoodByePrintStats(){
+        wheelText.innerHTML = 'It\'s game Overr <br><br> Acertaste '+correctAnswers+' preguntas <br><br> Fallaste '+(QuestionBank.length - correctAnswers)+' preguntas <br><br> Gracias por jugar';
         console.log(`Acertaste ${correctAnswers} preguntas`);
         console.log(`Fallaste ${QuestionBank.length - correctAnswers} preguntas`);
         console.log('Gracias por jugar');

@@ -158,8 +158,9 @@ const endGameSFX = document.getElementById('endGameSound');
 let delayWheel = 100;
 let durationAnimation = 2000;
 let spinTheWheel;
- findScreenSize();
+findScreenSize();
 //MediaQuery function
+console.log('This is the screen width '+screen.width);
 function findScreenSize(){
     if(!mobileSize.matches){
         console.log('desktop screen');

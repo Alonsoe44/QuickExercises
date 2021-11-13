@@ -90,6 +90,7 @@ let Questions = [{ letter: "a", answer: "abducir", status: 'waiting', question: 
         //let userAnswer = window.prompt(Questions[indexQuestion].question).toLowerCase(); old code
         spinTheWheel.play();
         let userAnswer = userInputBox.value;
+        console.log(userAnswer);
         userInputBox.value = '';
         if(userAnswer===Questions[i].answer){
             Questions[i].status = 'correct';

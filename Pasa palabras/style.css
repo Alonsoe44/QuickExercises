@@ -42,7 +42,7 @@ body{
     position: absolute;
     width: 12rem;
     height: 5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     right: 3.3rem;
     z-index: -10;
 }
@@ -67,6 +67,7 @@ body{
     justify-content: center;
 }
 #ContainerInput{
+    margin-top: 1rem;
     width: 30rem;
 }
 #InputBox{
